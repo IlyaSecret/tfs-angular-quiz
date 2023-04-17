@@ -1,0 +1,14 @@
+<app-quiz-add
+  (addCard)="service.addCard($event)"
+></app-quiz-add>
+<div class="list">
+  <app-quiz-card
+    *ngFor="let card of service.cards; let i = index"
+    [card]="card"
+    [index]="i"
+    [isOpen]="activeId === i"
+    [animEnd]="animEnd"
+    (turnEvent)="changeActiveCard($event)"
+    (delete)="service.deleteCard($event)"
+  ></app-quiz-card>
+</div>

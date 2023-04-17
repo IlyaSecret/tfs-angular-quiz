@@ -1,0 +1,14 @@
+<div class="card" (click)="turn()" [ngClass]="{ turn: isOpen }">
+  <div class="card-inner">
+    <div class="card-front">
+      <button class="del-btn" (click)="deleteCard()">
+        X
+      </button>
+      {{card.term}}
+    </div>
+    <div class="card-back">
+      {{card.description}}
+    </div>
+  </div>
+
+</div>
