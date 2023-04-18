@@ -9,6 +9,6 @@
     [isOpen]="activeId === i"
     [animEnd]="animEnd"
     (turnEvent)="changeActiveCard($event)"
-    (delete)="service.deleteCard($event)"
+    (delete)="service.deleteCard($event.id)"
   ></app-quiz-card>
 </div>

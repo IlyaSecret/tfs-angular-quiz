@@ -22,6 +22,7 @@ export class QuizAddComponent{
       this.addCard.emit({
         term: this.form.get('term')?.value,
         description: this.form.get('description')?.value,
+        id: ''
       });
       this.form.reset();
     }

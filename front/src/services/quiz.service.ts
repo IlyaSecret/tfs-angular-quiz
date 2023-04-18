@@ -1,30 +1,32 @@
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {ICard} from "../shared/models/card";
-
-const cardsArr: ICard[] = [
-  {
-    term: "Сопротивление",
-    description: " физическая величина, которая показывает способность проводника пропускать электрический ток. Чем выше сопротивление, тем ниже эта способность."
-  },
-  {
-    term: "Удельное сопротивление проводника",
-    description: "это физическая величина, которая показывает способность материала пропускать электрический ток. Это табличная величина, она зависит только от материала."
-  }
-];
+import {QuizApiServiceToken} from "./IQuizService";
+import {QuizApiService} from "./quiz-api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
-  private _cards = cardsArr
+  private _cards: ICard[] = [];
 
+  constructor(@Inject(QuizApiServiceToken) public service: QuizApiService) {
+  }
+  init(): void {
+    this.service.getAll().subscribe(items => {
+      this._cards = items;
+    })
+  }
   get cards(): ICard[] {
     return this._cards;
   }
   addCard(card: ICard): void {
-    this._cards = [...this._cards, card];
+    this.service.addQuizCard(card).subscribe(card => {
+      this.init()
+    })
   }
-  deleteCard(card: ICard): void {
-    this._cards = this._cards.filter(c => c.term !== card.term);
+  deleteCard(id: string): void {
+    this.service.deleteCard(id).subscribe(item => {
+      this.init()
+    })
   }
 }

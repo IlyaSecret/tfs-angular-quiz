@@ -5,6 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {QuizModule} from "./quiz/quiz.module";
+import {QuizApiServiceToken} from "../services/IQuizService";
+import {QuizApiService} from "../services/quiz-api.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,10 +19,11 @@ import {QuizModule} from "./quiz/quiz.module";
     QuizModule,
     BrowserAnimationsModule,
     TuiRootModule,
-    TuiDialogModule
+    TuiDialogModule,
+    HttpClientModule
 ],
   providers: [
-
+    {provide: QuizApiServiceToken, useClass: QuizApiService}
   ],
   bootstrap: [AppComponent]
 })
