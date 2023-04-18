@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="form" (submit)="submit()">
+<form class="form" [formGroup]="form">
   <div class="form-title">Добавить карточку</div>
   <div class="form-content">
     <div class="row">
@@ -8,7 +8,14 @@
       <tui-text-area formControlName="description">Описание</tui-text-area>
     </div>
     <div class="row row_submit">
-      <input type="submit" class="button" value="Добавить карточку">
+      <input type="submit" class="button" value="Добавить карточку" (click)="submit()">
+    </div>
+    <div class="row row_submit">
+      <button
+        class="open-button"
+        tuiButton
+        (click)="openAll()"
+      >Открыть все</button>
     </div>
   </div>
 </form>

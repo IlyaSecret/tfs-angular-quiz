@@ -21,6 +21,7 @@ export class QuizService {
   }
   addCard(card: ICard): void {
     this.service.addQuizCard(card).subscribe(card => {
+      localStorage.setItem(card.id, `${card.isOpened}`)
       this.init()
     })
   }

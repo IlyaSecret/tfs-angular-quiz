@@ -9,7 +9,7 @@ import { ICard } from 'src/shared/models/card';
 })
 export class QuizAddComponent{
   @Output() addCard = new EventEmitter<ICard>();
-
+  @Output() openAllEvent = new EventEmitter<void>();
   constructor() {
   }
 
@@ -22,8 +22,13 @@ export class QuizAddComponent{
       this.addCard.emit({
         term: this.form.get('term')?.value,
         description: this.form.get('description')?.value,
-        id: ''
+        id: '',
+        isOpened: false
       });
       this.form.reset();
+    }
+
+    openAll(): void {
+      this.openAllEvent.emit();
     }
 }

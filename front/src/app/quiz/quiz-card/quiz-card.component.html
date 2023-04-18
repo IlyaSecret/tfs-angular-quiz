@@ -1,7 +1,7 @@
-<div class="card" (click)="turn()" [ngClass]="{ turn: isOpen }">
+<div class="card" (click)="turn()" [ngClass]="{ turn: card.isOpened }">
   <div class="card-inner">
     <div class="card-front">
-      <button class="del-btn" (click)="deleteCard()">
+      <button class="del-btn" (click)="deleteCard(); $event.stopPropagation()">
         X
       </button>
       {{card.term}}

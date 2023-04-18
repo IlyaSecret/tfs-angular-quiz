@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {QuizAddComponent} from "./quiz-add.component";
 import {TuiInputModule, TuiTextAreaModule} from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TuiButtonModule} from "@taiga-ui/core";
 
 
 
@@ -18,7 +19,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     TuiInputModule,
     TuiTextAreaModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TuiButtonModule
   ]
 })
 export class QuizAddModule { }

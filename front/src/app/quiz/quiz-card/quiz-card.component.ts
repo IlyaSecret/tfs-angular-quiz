@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICard} from "../../../shared/models/card";
 
 @Component({
@@ -6,20 +6,24 @@ import {ICard} from "../../../shared/models/card";
   templateUrl: './quiz-card.component.html',
   styleUrls: ['./quiz-card.component.scss']
 })
-export class QuizCardComponent {
+export class QuizCardComponent implements OnInit{
   @Input() card!: ICard;
-  @Input() index!: number;
-  @Input() isOpen!: boolean;
-  @Input() animEnd!: boolean;
-  @Output() turnEvent = new EventEmitter<number>();
+  @Input() turnedAll!: boolean;
   @Output() delete = new EventEmitter<ICard>();
 
-  turn(): void {
-    if (this.animEnd) {
-      this.turnEvent.emit(this.index);
+
+  ngOnInit(): void {
+    if(localStorage.getItem(this.card.id) === 'true') {
+      this.card.isOpened = true;
     }
   }
+
+  turn(): void {
+    this.card.isOpened = !this.card.isOpened;
+    localStorage.setItem(this.card.id, `${this.card.isOpened}`)
+  }
   deleteCard(): void {
+    localStorage.removeItem(this.card.id)
     this.delete.emit(this.card);
   }
 }
